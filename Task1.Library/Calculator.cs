@@ -8,16 +8,24 @@ namespace Task1.Library
 {
     public static class Calculator
     {
-        public static double Root(double x, double n, double precision)
+        /// <summary>
+        /// Calculates a nth root of a number
+        /// </summary>
+        /// <param name="x">Radicand</param>
+        /// <param name="degree">Degree of the root</param>
+        /// <param name="precision">Precision of the result</param>
+        /// <returns>Root of the given degree</returns>
+        public static double Root(double x, double degree, double precision)
         {
-            double result = x;
-            double next = x / n;
-            while (Math.Abs(next - result) > precision)
+            precision = Math.Abs(precision);
+            double result = 1;
+            double delta = (1 / degree) * (x / Math.Pow(result, degree - 1) - result);
+            while (Math.Abs(delta) > precision)
             {
-                result = next;
-                next = (1 / n) * ((n - 1) * result + x / Math.Pow(result, n - 1));
+                result += delta;
+                delta = (1 / degree) * (x / Math.Pow(result, degree - 1) - result);
             }
-            return next;
+            return result + delta;
         }
     }
 }
