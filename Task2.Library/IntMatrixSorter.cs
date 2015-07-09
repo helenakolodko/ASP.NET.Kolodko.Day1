@@ -22,12 +22,12 @@ namespace Task2.Library
         {
             int firstMax = GetMaxElement(a);
             int secondMax = GetMaxElement(b);
-            return firstMax.CompareTo(b);
+            return firstMax.CompareTo(secondMax);
         }
 
         private static int GetMaxElement(int[] array)
         {
-            int max = array[0];
+            int max = int.MinValue;
             foreach (int element in array)
             {
                 if (element > max)
@@ -52,12 +52,12 @@ namespace Task2.Library
         {
             int firstMin = GetMinElement(a);
             int secondMin = GetMinElement(b);
-            return firstMin.CompareTo(b);
+            return firstMin.CompareTo(secondMin);
         }
 
         private static int GetMinElement(int[] array)
         {
-            int min = array[0];
+            int min = int.MaxValue;
             foreach (int element in array)
             {
                 if (element < min)
@@ -82,7 +82,7 @@ namespace Task2.Library
         {
             int firstSum = GetSumOfElements(a);
             int secondSum = GetSumOfElements(b);
-            return firstSum.CompareTo(b);
+            return firstSum.CompareTo(secondSum);
         }
 
         private static int GetSumOfElements(int[] array)
@@ -109,7 +109,7 @@ namespace Task2.Library
             while (i < array.Length && found)
             {
                 found = false;
-                for (int j = array.Length; j >= i; j--)
+                for (int j = array.Length - 1; j >= i; j--)
                 {
                     if (compareMethod(array[j - 1], array[j]) > 0 == increasing)
                     {

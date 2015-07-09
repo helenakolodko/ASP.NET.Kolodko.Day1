@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Task2.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class SortByMaxElementTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Sort()
         {
         }
     }
