@@ -31,7 +31,6 @@ namespace Task1.Console
                     System.Console.WriteLine();                                        
                 }
             }
-            System.Console.WriteLine(Calculator.Root(-9, 2, .0001));
         }
     }
 }

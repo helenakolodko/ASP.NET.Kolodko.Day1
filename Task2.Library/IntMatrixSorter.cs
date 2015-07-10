@@ -18,6 +18,59 @@ namespace Task2.Library
             SortRows(array, CompareByMaxElement, increasing);
         }
 
+        /// <summary>
+        /// Sort matrix by minimal elements of matrix's rows.
+        /// </summary>
+        /// <param name="array">Matrix to be sorted.</param>
+        /// <param name="increasing">Specifies the order of sorting.</param>
+        public static void SortByMinRowElement(int[][] array, bool increasing = true)
+        {
+            SortRows(array, CompareByMinElement, increasing);
+        }
+
+        /// <summary>
+        /// Sort matrix by elements sum of matrix's rows.
+        /// </summary>
+        /// <param name="array">Matrix to be sorted.</param>
+        /// <param name="increasing">Specifies the order of sorting.</param>
+        public static void SortBySumOfRowElements(int[][] array, bool increasing = true)
+        {
+            SortRows(array, CompareBySumOfElements, increasing);
+        }
+
+        /// <summary>
+        /// Sort matrix rows using specified compare method.
+        /// </summary>
+        /// <param name="array">Matrix to be sorted.</param>
+        /// <param name="compareMethod">Method that compares two arrays and returns positive number if the first is greater, zero if equals and negative if smaller.</param>
+        /// <param name="increasing">Specifies the order of sorting.</param>
+        public static void SortRows(int[][] array, Func<int[], int[], int> compareMethod, bool increasing = true)
+        {
+            int i = 1;
+            bool found = true;
+
+            while (i < array.Length && found)
+            {
+                found = false;
+                for (int j = array.Length - 1; j >= i; j--)
+                {
+                    if (compareMethod(array[j - 1], array[j]) > 0 == increasing)
+                    {
+                        SwapElements(array, j);
+                    }
+                    found = true;
+                }
+                i++;
+            }
+        }
+
+        private static void SwapElements(int[][] array, int i, int j)
+        {
+            int[] temp = array[j];
+            array[j] = array[i];
+            array[i] = temp;
+        }
+
         private static int CompareByMaxElement(int[] a, int[] b)
         {
             int firstMax = GetMaxElement(a);
@@ -36,16 +89,6 @@ namespace Task2.Library
                 }
             }
             return max;
-        }
-
-        /// <summary>
-        /// Sort matrix by minimal elements of matrix's rows.
-        /// </summary>
-        /// <param name="array">Matrix to be sorted.</param>
-        /// <param name="increasing">Specifies the order of sorting.</param>
-        public static void SortByMinRowElement(int[][] array, bool increasing = true)
-        {
-            SortRows(array, CompareByMinElement, increasing);
         }
 
         private static int CompareByMinElement(int[] a, int[] b)
@@ -68,16 +111,6 @@ namespace Task2.Library
             return min;
         }
 
-        /// <summary>
-        /// Sort matrix by elements sum of matrix's rows.
-        /// </summary>
-        /// <param name="array">Matrix to be sorted.</param>
-        /// <param name="increasing">Specifies the order of sorting.</param>
-        public static void SortBySumOfRowElements(int[][] array, bool increasing = true)
-        {
-            SortRows(array, CompareBySumOfElements, increasing);
-        }
-
         private static int CompareBySumOfElements(int[] a, int[] b)
         {
             int firstSum = GetSumOfElements(a);
@@ -93,34 +126,6 @@ namespace Task2.Library
                 sum += element;
             }
             return sum;
-        }
-
-        /// <summary>
-        /// Sort matrix rows using specified compare method.
-        /// </summary>
-        /// <param name="array">Matrix to be sorted.</param>
-        /// <param name="compareMethod">Method that compares two arrays and returns positive number if the first is greater, zero if equals and negative if smaller.</param>
-        /// <param name="increasing">Specifies the order of sorting.</param>
-        public static void SortRows(int[][] array, Func<int[], int[], int> compareMethod, bool increasing = true)
-        {
-            int i = 1;
-            bool found = true;
-
-            while (i < array.Length && found)
-            {
-                found = false;
-                for (int j = array.Length - 1; j >= i; j--)
-                {
-                    if (compareMethod(array[j - 1], array[j]) > 0 == increasing)
-                    {
-                        int[] temp = array[j];
-                        array[j] = array[j - 1];
-                        array[j - 1] = temp;
-                    }
-                    found = true;
-                }
-                i++;
-            }
         }
     }
 }

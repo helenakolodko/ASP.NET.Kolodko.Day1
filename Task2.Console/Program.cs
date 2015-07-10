@@ -45,8 +45,31 @@ namespace Task2.Console
             System.Console.WriteLine("Decreasingly sorted by sum of elements:");
             ShowJaggedArray(tempArray);
 
+            tempArray = (int[][])arraySource.Clone();
+            IntMatrixSorter.SortRows(tempArray, CompareMult);
+            System.Console.WriteLine("Decreasingly sorted by mult of elements:");
+            ShowJaggedArray(tempArray);
+
             System.Console.ReadKey();
         }
+
+        private static int CompareMult(int[] a, int[] b)
+        {
+            int firstSum = GetMultOfElements(a);
+            int secondSum = GetMultOfElements(b);
+            return firstSum.CompareTo(secondSum);
+        }
+
+        private static int GetMultOfElements(int[] array)
+        {
+            int mult = 1;
+            foreach (int element in array)
+            {
+                mult *= element;
+            }
+            return mult;
+        }
+
 
         static void ShowJaggedArray(int[][] array)
         {
