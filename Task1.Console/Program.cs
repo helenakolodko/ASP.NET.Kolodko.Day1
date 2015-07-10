@@ -26,7 +26,7 @@ namespace Task1.Console
                     if (!Double.TryParse(System.Console.ReadLine(), out precision))
                         degree = .01;
 
-                    System.Console.WriteLine("Result of Calculator.Root method: " + Calculator.Root(x, degree, precision));
+                    System.Console.WriteLine("Result of Calculator.Root method: " + Calculator.NewtonRoot(x, degree, precision));
                     System.Console.WriteLine("Result of Math.Pow method: " + Math.Pow(x, 1 / degree));
                     System.Console.WriteLine();                                        
                 }

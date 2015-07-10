@@ -15,8 +15,17 @@ namespace Task1.Library
         /// <param name="degree">Degree of the root</param>
         /// <param name="precision">Precision of the result</param>
         /// <returns>Root of the given degree</returns>
-        public static double Root(double x, double degree, double precision)
+        /// <exception cref="ArgumentException">Thrown when <see cref="degree"/> is zero, or <see cref="x"/> is negative and <see cref="degree"/> is an even number.</exception>
+        public static double NewtonRoot(double x, int degree, double precision)
         {
+            if (degree == 0)
+            {
+                throw new ArgumentException("Can't calculate root of zero degree.", "degree");
+            }
+            if (x < 0 && degree % 2 == 0)
+            {
+                throw new ArgumentException("Can't calculate an even degree root of a negative number.", "degree");
+            }            
             precision = Math.Abs(precision);
             double result = 1;
             double delta = (1 / degree) * (x / Math.Pow(result, degree - 1) - result);
