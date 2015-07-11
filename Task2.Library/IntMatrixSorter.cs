@@ -56,7 +56,7 @@ namespace Task2.Library
                 {
                     if (compareMethod(array[j - 1], array[j]) > 0 == increasing)
                     {
-                        SwapElements(array, j);
+                        SwapElements(array, j, j - 1);
                     }
                     found = true;
                 }

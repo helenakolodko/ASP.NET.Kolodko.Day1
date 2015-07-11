@@ -15,19 +15,19 @@ namespace Task1.Console
             {
                 System.Console.Write("Radicant: ");
                 double x;
-                if (Double.TryParse(System.Console.ReadLine(), out x))
+                if (double.TryParse(System.Console.ReadLine(), out x))
                 {
-                    double degree;
+                    int degree;
                     System.Console.Write("Degree [2]: ");
-                    if (!Double.TryParse(System.Console.ReadLine(), out degree))
+                    if (!int.TryParse(System.Console.ReadLine(), out degree))
                         degree = 2;
                     double precision;
                     System.Console.Write("Precision [.01]: ");
-                    if (!Double.TryParse(System.Console.ReadLine(), out precision))
-                        degree = .01;
+                    if (!double.TryParse(System.Console.ReadLine(), out precision))
+                        precision = .01;
 
                     System.Console.WriteLine("Result of Calculator.Root method: " + Calculator.NewtonRoot(x, degree, precision));
-                    System.Console.WriteLine("Result of Math.Pow method: " + Math.Pow(x, 1 / degree));
+                    System.Console.WriteLine("Result of Math.Pow method: " + Math.Pow(x, 1d / degree));
                     System.Console.WriteLine();                                        
                 }
             }
